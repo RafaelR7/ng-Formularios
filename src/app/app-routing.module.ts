@@ -7,7 +7,7 @@ import { TemplateDrivenComponent } from './view/template-driven/template-driven.
 const routes: Routes = [
   { path: 'template', component: TemplateDrivenComponent },
   { path: 'reactive', component: ReactiveDrivenComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'template'}
+  { path: '', pathMatch: 'full', redirectTo: 'reactive'}
 ];
 
 @NgModule({

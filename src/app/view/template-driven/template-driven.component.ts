@@ -1,3 +1,4 @@
+import { ConsultaCepService } from './../../service/consulta-cep.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormControlName } from '@angular/forms';
 
@@ -10,7 +11,10 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class TemplateDrivenComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private cepService: ConsultaCepService
+  ) { }
 
   ngOnInit() {
   }
@@ -39,14 +43,11 @@ export class TemplateDrivenComponent implements OnInit {
   consultaCEP(cep: string, form: NgForm) {
      cep = cep.replace(/\D/g, '');
 
-     if (cep !== '') {
-      const validacep = /^[0-9]{8}$/;
-
-      if (validacep.test(cep)) {
-        this.userService.getCEP(cep)
-        .subscribe(dados => this.populaDadosForm(dados, form));
-      }
-     }
+    if (cep != null && cep !== '') {
+      this.cepService.consultaCEP(cep).subscribe(dados => {
+        this.populaDadosForm(dados, form);
+      });
+    }
   }
 
   populaDadosForm(dados: any, form: NgForm) {

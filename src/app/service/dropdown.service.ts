@@ -1,14 +1,15 @@
+import { EstadosBr } from './../models/estados-br';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class DropdownService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(form: any) {
-    return this.http.post('https://httpbin.org/post', form.value);
+  getEstadosBr() {
+    return this.http.get<EstadosBr[]>('assets/dados/estadosBR.json');
   }
 }

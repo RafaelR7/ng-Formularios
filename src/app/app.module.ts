@@ -4,20 +4,22 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ReactiveDrivenComponent } from './view/reactive-driven/reactive-driven.component';
+import { ReactiveDrivenModule } from './view/reactive-driven/reactive-driven.module';
+import { SharedModule } from './shared/shared.module';
 import { TemplateDrivenModule } from './view/template-driven/template-driven.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReactiveDrivenComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TemplateDrivenModule
+    ReactiveDrivenModule,
+    SharedModule,
+    TemplateDrivenModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
