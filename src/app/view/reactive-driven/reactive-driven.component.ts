@@ -1,16 +1,11 @@
-import { ConsultaCepService } from './../../service/consulta-cep.service';
-import { EstadosBr } from './../../models/estados-br';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-  FormControlName
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
-import { UserService } from 'src/app/service/user.service';
+import { ConsultaCepService } from './../../service/consulta-cep.service';
 import { DropdownService } from 'src/app/service/dropdown.service';
+import { EstadosBr } from './../../models/estados-br';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-reactive-driven',
@@ -19,7 +14,7 @@ import { DropdownService } from 'src/app/service/dropdown.service';
 })
 export class ReactiveDrivenComponent implements OnInit {
   form: FormGroup;
-  estados: EstadosBr[];
+  estados: Observable<EstadosBr[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,9 +43,7 @@ export class ReactiveDrivenComponent implements OnInit {
       })
     });
 
-    this.dropdownService.getEstadosBr().subscribe((estados: EstadosBr[]) => {
-      this.estados = estados;
-    });
+    this.estados = this.dropdownService.getEstadosBr();
   }
 
   onSubmit() {
